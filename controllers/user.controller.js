@@ -23,28 +23,31 @@ const getUser = (req = request, res = response) => {
   const createUser = (req = request, res = response) => {
   // URL/api/user/ -- Body: activar raw y Json
   //Es el objeto en JSON
-    const {name} = req.body
+    const {name, edad} = req.body
     res.status(201).json({
         msg: 'create API - controller',
         name,
+        edad
     })
   }
 
   const updateUser = (req = request, res = response) => {
+    // URL/api/user/3 -- Segementación
     const id = req.params.id
-    const body = req.body
+    // const body = req.body
     res.json({
       msg: 'create API - controller',
       id,
-      body,
+      // body,
     })
   }
 
   const deleteUser = (req = request, res = response) => {
-
+    // URL/api/user/ -- Segmentación
     const id = req.params.id
     res.json({
-       msg: 'delete API - controller'
+       msg: 'delete API - controller',
+       id
 
     })
   }
