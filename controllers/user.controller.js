@@ -1,4 +1,7 @@
 const {request, response } = require('express')
+const bcryptjs = require('bcryptjs')
+const User = require('../models/user')
+const { validationResult } = require('express-validator')
 
 const getUser = (req = request, res = response) => {
   // URL/api/user/?name=Juan&age=18-08-2005 -- Query
@@ -20,14 +23,28 @@ const getUser = (req = request, res = response) => {
     })
   }
 
-  const createUser = (req = request, res = response) => {
+  const createUser = async (req = request, res = response) => {
   // URL/api/user/ -- Body: activar raw y Json
   //Es el objeto en JSON
-    const {name, edad} = req.body
+    // const {name, edad} = req.body
+
+ 
+    
+    const {name, email, password, role} = req.body
+    const user = new User({name, email, password, role})
+
+    //Verificar si el correo ya existe en la BD
+
+
+
+    user.password = bcryptjs.hashSync(password, bcryptjs.genSaltSync())
+
+
+
+    await user.save()
     res.status(201).json({
         msg: 'create API - controller',
-        name,
-        edad
+        user,
     })
   }
 

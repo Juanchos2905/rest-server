@@ -1,5 +1,6 @@
 const express = require('express') //Se importa express
 const cors = require('cors')
+const { dbConection } = require('../database/config.db')
 
 class Server{
     constructor(){
@@ -8,6 +9,10 @@ class Server{
                                         Se asigna un puerto.*/
         this.userPath = '/api/users' /**Esta es la url de usuarios 
                                         Porción dedicada a usuarios. Esta encaja en la función rutas(). */
+
+        //Conectar a base de datos
+        this.conectarDB()
+
         // this.productsPath = '/api/productos'
 
         // Middlewares
@@ -17,6 +22,10 @@ class Server{
 
         //Rutas de mi app
         this.routes()
+    }
+
+    conectarDB(){
+        dbConection()
     }
 
     middlewares(){
