@@ -10,6 +10,8 @@ class Server{
         this.userPath = '/api/users' /**Esta es la url de usuarios 
                                         Porción dedicada a usuarios. Esta encaja en la función rutas(). */
 
+        this.authPath = '/api/auth'
+
         //Conectar a base de datos
         this.conectarDB()
 
@@ -43,6 +45,7 @@ class Server{
 
     routes(){
         this.app.use(this.userPath, require('../routes/user.routes'))
+        this.app.use(this.authPath, require('../routes/auth.routes'))
     }
     
 

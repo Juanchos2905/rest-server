@@ -42,7 +42,8 @@ const UserSchema = Schema({
 })
 
 UserSchema.methods.toJSON = function(){
-    const {__V, password, ...user} = this.toObject()
+    const {__v, password, _id, ...user} = this.toObject()
+    user.id = _id
     return user
 }
 

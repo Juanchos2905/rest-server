@@ -112,7 +112,7 @@ const getUser = async(req = request, res = response) => {
       //Borrado suave
       const deleteUser = await User.findByIdAndUpdate(id, {status: false}, {new: true})
       res.json({
-         msg: 'delete API - controller',
+        //  msg: 'delete API - controller',
          deleteUser
   
       })
